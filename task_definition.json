@@ -1,0 +1,14 @@
+[
+    {
+      "name": "kamil_flask",
+      "image": "365923450548.dkr.ecr.eu-west-1.amazonaws.com/kmbgrb/kamil_flask:2",
+      "portMappings": [
+        {
+          "containerPort": 5000,
+          "hostPort": 0
+        }
+      ],
+      "memory": 250,
+      "cpu": 302
+    }
+  ]

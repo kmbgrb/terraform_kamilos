@@ -6,32 +6,18 @@ resource "aws_ecs_cluster" "kamilos" {
   name = "${var.tag_name}"
 }
 
+
 resource "aws_ecs_task_definition" "kamilos" {
   family = "${var.tag_name}"
 
-  container_definitions = <<DEFINITION
-    [
-        {
-          "name": "kamil_flask",
-          "image": "365923450548.dkr.ecr.eu-west-1.amazonaws.com/kmbgrb/kamil_flask:2",
-          "portMappings": [
-            {
-              "containerPort": 5000,
-              "hostPort": 0
-            }
-          ],
-          "memory": 250,
-          "cpu": 302
-        }
-      ]
-DEFINITION
+  container_definitions = "${file("task_definition.json")}"
 }
 
 resource "aws_ecs_service" "kamilos" {
     name = "${var.tag_name}"
     cluster = "${aws_ecs_cluster.kamilos.id}"
     task_definition = "${aws_ecs_task_definition.kamilos.family}"
-    desired_count = 0
+    desired_count = "${var.desired_count}"
 }
 
 data "template_file" "init" {

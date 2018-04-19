@@ -1,6 +1,6 @@
 variable "my_ipv4" {
   description = "My current ip address"
-  default     = "89.64.3.191/32"
+  default     = "89.64.3.208/32"
 }
 
 variable "region" {
@@ -25,4 +25,8 @@ variable "iam_instance_profile" {
 
 variable "key_name" {
   default = "aws-kamilos"
+}
+
+variable "desired_count" {
+  default = 0
 }
